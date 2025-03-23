@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { ProductGrid } from '@/components/products/ProductGrid';
-import { getFeaturedProducts } from '@/data/products';
+import { getFeaturedProducts } from '@/data';
 
 export function FeaturedProducts() {
   const [featuredProducts, setFeaturedProducts] = useState(getFeaturedProducts());

@@ -1,67 +1,6 @@
 
-import { Product, Category, Artisan } from '@/types';
-
-export const artisans: Artisan[] = [
-  {
-    id: '1',
-    name: 'Maria Santos',
-    bio: 'Maria has been crafting traditional Bicol pottery for over 20 years, passing down techniques from her grandmother.',
-    location: 'Albay, Bicol',
-    image: '/images/artisans/maria-santos.jpg'
-  },
-  {
-    id: '2',
-    name: 'Juan Reyes',
-    bio: 'Juan specializes in abaca weaving, creating intricate patterns inspired by Bicol\'s natural landscapes.',
-    location: 'Sorsogon, Bicol',
-    image: '/images/artisans/juan-reyes.jpg'
-  },
-  {
-    id: '3',
-    name: 'Elena Cruz',
-    bio: 'Elena is known for her stunning shell craft creations, using sustainably sourced materials from local beaches.',
-    location: 'Catanduanes, Bicol',
-    image: '/images/artisans/elena-cruz.jpg'
-  }
-];
-
-export const categories: Category[] = [
-  {
-    id: '1',
-    name: 'Pottery',
-    description: 'Traditional clay pottery showcasing Bicol\'s rich cultural heritage',
-    image: '/images/categories/pottery.jpg',
-    slug: 'pottery'
-  },
-  {
-    id: '2',
-    name: 'Textiles',
-    description: 'Handwoven fabrics and textiles made from locally sourced materials',
-    image: '/images/categories/textiles.jpg',
-    slug: 'textiles'
-  },
-  {
-    id: '3',
-    name: 'Baskets',
-    description: 'Intricately woven baskets using traditional Bicol techniques',
-    image: '/images/categories/baskets.jpg',
-    slug: 'baskets'
-  },
-  {
-    id: '4',
-    name: 'Shell Craft',
-    description: 'Beautiful creations crafted from locally sourced shells',
-    image: '/images/categories/shell-craft.jpg',
-    slug: 'shell-craft'
-  },
-  {
-    id: '5',
-    name: 'Wood Carvings',
-    description: 'Exquisite wood sculptures handcrafted by master artisans',
-    image: '/images/categories/wood-carvings.jpg',
-    slug: 'wood-carvings'
-  }
-];
+import { Product } from '@/types';
+import { artisans } from './artisans';
 
 export const products: Product[] = [
   {
@@ -200,27 +139,3 @@ export const products: Product[] = [
     updatedAt: '2023-11-20T08:45:00Z'
   }
 ];
-
-export const getFeaturedProducts = (): Product[] => {
-  return products.filter(product => product.featured);
-};
-
-export const getProductsByCategory = (category: string): Product[] => {
-  return products.filter(product => product.category.toLowerCase() === category.toLowerCase());
-};
-
-export const getProductById = (id: string): Product | undefined => {
-  return products.find(product => product.id === id);
-};
-
-export const getRelatedProducts = (id: string, limit = 4): Product[] => {
-  const currentProduct = getProductById(id);
-  if (!currentProduct) return [];
-  
-  return products
-    .filter(product => 
-      product.id !== id && 
-      product.category === currentProduct.category
-    )
-    .slice(0, limit);
-};

@@ -8,7 +8,7 @@ import { ProductImageGallery } from '@/components/products/ProductImageGallery';
 import { ProductInfo } from '@/components/products/ProductInfo';
 import { ProductActions } from '@/components/products/ProductActions';
 import { ProductNotFound } from '@/components/products/ProductNotFound';
-import { getProductById, getRelatedProducts } from '@/data/products';
+import { getProductById, getRelatedProducts } from '@/data';
 
 const ProductDetailPage = () => {
   const { id } = useParams<{ id: string }>();

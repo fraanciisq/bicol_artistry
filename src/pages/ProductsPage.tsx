@@ -6,7 +6,7 @@ import { ProductGrid } from '@/components/products/ProductGrid';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Search, Filter, ChevronDown } from 'lucide-react';
-import { products, categories } from '@/data/products';
+import { products, categories } from '@/data';
 import { Product } from '@/types';
 
 const ProductsPage = () => {

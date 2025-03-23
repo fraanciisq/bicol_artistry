@@ -2,7 +2,7 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
-import { categories } from '@/data/products';
+import { categories } from '@/data';
 
 export function FeaturedCategories() {
   const containerVariants = {
