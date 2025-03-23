@@ -17,6 +17,7 @@ const ProductDetailPage = () => {
   const [quantity, setQuantity] = useState(1);
   const [activeImage, setActiveImage] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [imageErrors, setImageErrors] = useState<Record<number, boolean>>({});
   const { addItem, isInCart } = useCart();
   
   useEffect(() => {
@@ -24,6 +25,7 @@ const ProductDetailPage = () => {
       const product = getProductById(id);
       setCurrentProduct(product);
       setActiveImage(0); // Reset active image when product changes
+      setImageErrors({}); // Reset image errors
       
       // Simulate loading
       setIsLoading(true);
@@ -77,6 +79,14 @@ const ProductDetailPage = () => {
       toast.success('Link copied to clipboard!');
     }
   };
+
+  const handleImageError = (index: number) => {
+    setImageErrors(prev => ({ ...prev, [index]: true }));
+  };
+
+  const getImageSrc = (index: number) => {
+    return imageErrors[index] ? '/placeholder.svg' : (currentProduct.images[index] || '/placeholder.svg');
+  };
   
   return (
     <Layout>
@@ -107,9 +117,10 @@ const ProductDetailPage = () => {
                   className="aspect-square rounded-xl overflow-hidden bg-white"
                 >
                   <img 
-                    src={currentProduct.images[activeImage]} 
+                    src={getImageSrc(activeImage)} 
                     alt={currentProduct.name} 
                     className="w-full h-full object-contain"
+                    onError={() => handleImageError(activeImage)}
                   />
                 </motion.div>
                 
@@ -126,9 +137,10 @@ const ProductDetailPage = () => {
                         }`}
                       >
                         <img 
-                          src={image} 
+                          src={getImageSrc(index)} 
                           alt={`${currentProduct.name} - View ${index + 1}`} 
                           className="w-full h-full object-cover"
+                          onError={() => handleImageError(index)}
                         />
                       </button>
                     ))}

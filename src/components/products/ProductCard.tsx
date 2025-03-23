@@ -1,4 +1,5 @@
 
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Product } from '@/types';
@@ -13,11 +14,16 @@ interface ProductCardProps {
 
 export function ProductCard({ product, index = 0 }: ProductCardProps) {
   const { addItem, isInCart } = useCart();
+  const [imageError, setImageError] = useState(false);
   
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
     addItem(product, 1);
+  };
+
+  const handleImageError = () => {
+    setImageError(true);
   };
 
   const cardVariants = {
@@ -43,6 +49,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
   };
 
   const alreadyInCart = isInCart(product.id);
+  const imageSrc = imageError ? '/placeholder.svg' : (product.images[0] || '/placeholder.svg');
 
   return (
     <motion.div
@@ -56,9 +63,10 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
           <motion.img
             whileHover="hover"
             variants={imageVariants}
-            src={product.images[0] || '/images/placeholder.jpg'}
+            src={imageSrc}
             alt={product.name}
             className="w-full h-full object-cover transition-transform duration-500"
+            onError={handleImageError}
           />
           
           {product.featured && (

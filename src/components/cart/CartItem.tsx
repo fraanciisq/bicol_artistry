@@ -13,6 +13,7 @@ interface CartItemProps {
 export function CartItem({ item }: CartItemProps) {
   const { updateQuantity, removeItem } = useCart();
   const [isHovered, setIsHovered] = useState(false);
+  const [imageError, setImageError] = useState(false);
   
   const handleQuantityChange = (newQuantity: number) => {
     if (newQuantity < 1) return;
@@ -22,6 +23,12 @@ export function CartItem({ item }: CartItemProps) {
   const handleRemove = () => {
     removeItem(item.productId);
   };
+
+  const handleImageError = () => {
+    setImageError(true);
+  };
+  
+  const imageSrc = imageError ? '/placeholder.svg' : (item.product.images[0] || '/placeholder.svg');
   
   return (
     <div 
@@ -32,9 +39,10 @@ export function CartItem({ item }: CartItemProps) {
       <div className="w-full sm:w-24 h-24 overflow-hidden rounded-lg">
         <Link to={`/product/${item.productId}`}>
           <img 
-            src={item.product.images[0]} 
+            src={imageSrc}
             alt={item.product.name} 
             className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+            onError={handleImageError}
           />
         </Link>
       </div>

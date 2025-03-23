@@ -1,9 +1,20 @@
 
+import { useState, useEffect } from 'react';
 import { ProductGrid } from '@/components/products/ProductGrid';
 import { getFeaturedProducts } from '@/data/products';
 
 export function FeaturedProducts() {
-  const featuredProducts = getFeaturedProducts();
+  const [featuredProducts, setFeaturedProducts] = useState(getFeaturedProducts());
+  
+  // Ensure products have fallback images
+  useEffect(() => {
+    const productsWithFallbacks = featuredProducts.map(product => ({
+      ...product,
+      images: product.images.map(img => img || '/placeholder.svg')
+    }));
+    
+    setFeaturedProducts(productsWithFallbacks);
+  }, []);
   
   return (
     <section className="py-20">
