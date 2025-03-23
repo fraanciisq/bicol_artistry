@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -12,7 +11,7 @@ import {
   Search,
   ChevronDown
 } from 'lucide-react';
-import { categories } from '@/data/products';
+import { categories } from '@/data/categories';
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
