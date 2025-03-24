@@ -41,7 +41,7 @@ export function Navbar() {
         {/* Logo */}
         <Link to="/" className="flex items-center space-x-2">
           <span className="text-2xl font-display font-bold bg-clip-text text-transparent bg-gradient-to-r from-terracotta-600 to-terracotta-500">
-            BicolArtistry
+            Bicol Artistry
           </span>
         </Link>
 
