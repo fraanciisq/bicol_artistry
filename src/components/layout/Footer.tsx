@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom';
 import { Facebook, Instagram, Twitter, Mail, Phone, MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -21,60 +20,56 @@ export function Footer() {
               authentic handcrafted products made by skilled local artisans.
             </p>
             <div className="flex space-x-4">
-              <Button 
-                variant="ghost" 
-                size="icon" 
-                className="rounded-full hover:bg-terracotta-100 hover:text-terracotta-600 dark:hover:bg-terracotta-900 dark:hover:text-terracotta-300"
-              >
-                <Facebook size={20} />
-                <span className="sr-only">Facebook</span>
+              <Button variant="ghost" size="icon" asChild>
+                <a href="https://facebook.com">
+                  <Facebook size={20} />
+                </a>
               </Button>
-              <Button 
-                variant="ghost" 
-                size="icon" 
-                className="rounded-full hover:bg-terracotta-100 hover:text-terracotta-600 dark:hover:bg-terracotta-900 dark:hover:text-terracotta-300"
-              >
-                <Instagram size={20} />
-                <span className="sr-only">Instagram</span>
+              <Button variant="ghost" size="icon" asChild>
+                <a href="https://instagram.com">
+                  <Instagram size={20} />
+                </a>
               </Button>
-              <Button 
-                variant="ghost" 
-                size="icon" 
-                className="rounded-full hover:bg-terracotta-100 hover:text-terracotta-600 dark:hover:bg-terracotta-900 dark:hover:text-terracotta-300"
-              >
-                <Twitter size={20} />
-                <span className="sr-only">Twitter</span>
+              <Button variant="ghost" size="icon" asChild>
+                <a href="https://twitter.com">
+                  <Twitter size={20} />
+                </a>
               </Button>
             </div>
           </div>
 
-          {/* Links */}
+          {/* Navigation Links */}
           <div className="md:col-span-2">
-            <h3 className="text-lg font-semibold mb-4">Shop</h3>
+            <h3 className="text-sm font-semibold text-bicolartistry-700 dark:text-bicolartistry-300 mb-4">Shop</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/products" className="text-bicolartistry-600 dark:text-bicolartistry-300 hover:text-terracotta-500 dark:hover:text-terracotta-400 transition-colors">
+                <Link to="/products" className="text-bicolartistry-600 dark:text-bicolartistry-400 hover:underline">
                   All Products
                 </Link>
               </li>
               <li>
-                <Link to="/category/pottery" className="text-bicolartistry-600 dark:text-bicolartistry-300 hover:text-terracotta-500 dark:hover:text-terracotta-400 transition-colors">
+                <Link to="/products/pottery" className="text-bicolartistry-600 dark:text-bicolartistry-400 hover:underline">
                   Pottery
                 </Link>
               </li>
               <li>
-                <Link to="/category/textiles" className="text-bicolartistry-600 dark:text-bicolartistry-300 hover:text-terracotta-500 dark:hover:text-terracotta-400 transition-colors">
+                <Link to="/products/textiles" className="text-bicolartistry-600 dark:text-bicolartistry-400 hover:underline">
                   Textiles
                 </Link>
               </li>
               <li>
-                <Link to="/category/baskets" className="text-bicolartistry-600 dark:text-bicolartistry-300 hover:text-terracotta-500 dark:hover:text-terracotta-400 transition-colors">
+                <Link to="/products/baskets" className="text-bicolartistry-600 dark:text-bicolartistry-400 hover:underline">
                   Baskets
                 </Link>
               </li>
               <li>
-                <Link to="/category/shell-craft" className="text-bicolartistry-600 dark:text-bicolartistry-300 hover:text-terracotta-500 dark:hover:text-terracotta-400 transition-colors">
+                <Link to="/products/shell-craft" className="text-bicolartistry-600 dark:text-bicolartistry-400 hover:underline">
                   Shell Craft
+                </Link>
+              </li>
+              <li>
+                <Link to="/products/wood-carvings" className="text-bicolartistry-600 dark:text-bicolartistry-400 hover:underline">
+                  Wood Carvings
                 </Link>
               </li>
             </ul>
