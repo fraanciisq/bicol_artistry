@@ -171,9 +171,9 @@ const ProductsPage = () => {
                         <input 
                           type="radio" 
                           name="category" 
-                          value={category.name}
-                          checked={selectedCategory === category.name}
-                          onChange={() => setSelectedCategory(category.name)}
+                          value={category.slug}
+                          checked={selectedCategory === category.slug}
+                          onChange={() => setSelectedCategory(category.slug)}
                           className="mr-2"
                         />
                         {category.name}
