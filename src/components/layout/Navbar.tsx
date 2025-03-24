@@ -83,7 +83,7 @@ export function Navbar() {
                     {categories.map((category) => (
                       <Link
                         key={category.id}
-                        to={`/category/${category.slug}`}
+                        to={`/products/${category.slug}`}
                         className="block px-4 py-2 hover:bg-terracotta-100 dark:hover:bg-terracotta-900/20 transition-colors"
                         onClick={() => setIsDropdownOpen(false)}
                       >

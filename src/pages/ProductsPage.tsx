@@ -1,5 +1,5 @@
-
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Layout } from '@/components/layout/Layout';
 import { ProductGrid } from '@/components/products/ProductGrid';
@@ -10,14 +10,20 @@ import { products, categories } from '@/data';
 import { Product } from '@/types';
 
 const ProductsPage = () => {
+  const { categorySlug } = useParams<{ categorySlug: string }>();
   const [filteredProducts, setFilteredProducts] = useState<Product[]>(products);
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState(categorySlug || '');
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 5000]);
   const [sortOption, setSortOption] = useState('featured');
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  
+
+  // Update selectedCategory when categorySlug changes
+  useEffect(() => {
+    setSelectedCategory(categorySlug || '');
+  }, [categorySlug]);
+
   // Simulate loading state
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -26,7 +32,7 @@ const ProductsPage = () => {
     
     return () => clearTimeout(timer);
   }, []);
-  
+
   useEffect(() => {
     // Filter products based on search, category, and price
     let filtered = [...products];
@@ -73,14 +79,14 @@ const ProductsPage = () => {
     
     setFilteredProducts(filtered);
   }, [searchQuery, selectedCategory, priceRange, sortOption]);
-  
+
   const resetFilters = () => {
     setSearchQuery('');
     setSelectedCategory('');
     setPriceRange([0, 5000]);
     setSortOption('featured');
   };
-  
+
   return (
     <Layout>
       <div className="container px-4 mx-auto py-12">
