@@ -1,17 +1,22 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { useCart } from "@/contexts/CartContext";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ShoppingCart, User, Search, ChevronDown } from "lucide-react";
-import { categories } from "@/data/categories";
+import { categories, products } from "@/data";
+import { CommandDialog, CommandInput, CommandList, CommandItem, CommandEmpty } from "@/components/ui/command";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
   const { itemCount } = useCart();
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,8 +31,24 @@ export function Navbar() {
     setIsMenuOpen(false);
   }, [location.pathname]);
 
+  useEffect(() => {
+    if (searchQuery) {
+      const results = products.filter(product =>
+        product.name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+      setSearchResults(results);
+    } else {
+      setSearchResults([]);
+    }
+  }, [searchQuery]);
+
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
+
+  const handleSearchSelect = (product) => {
+    setIsSearchOpen(false);
+    navigate(`/product/${product.id}`);
+  };
 
   return (
     <header
@@ -120,10 +141,8 @@ export function Navbar() {
 
         {/* Desktop Actions */}
         <div className="hidden md:flex items-center space-x-4">
-          <Button variant="ghost" size="icon" asChild>
-            <Link to="/search">
-              <Search size={20} />
-            </Link>
+          <Button variant="ghost" size="icon" onClick={() => setIsSearchOpen(true)}>
+            <Search size={20} />
           </Button>
 
           <Button variant="ghost" size="icon" asChild>
@@ -199,6 +218,29 @@ export function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Search Dialog */}
+      <CommandDialog open={isSearchOpen} onOpenChange={setIsSearchOpen}>
+        <CommandInput
+          placeholder="Search for products..."
+          value={searchQuery}
+          onValueChange={(value) => setSearchQuery(value)}
+        />
+        <CommandList>
+          {searchResults.length > 0 ? (
+            searchResults.map((product) => (
+              <CommandItem
+                key={product.id}
+                onSelect={() => handleSearchSelect(product)}
+              >
+                {product.name}
+              </CommandItem>
+            ))
+          ) : (
+            <CommandEmpty>No results found.</CommandEmpty>
+          )}
+        </CommandList>
+      </CommandDialog>
     </header>
   );
 }
