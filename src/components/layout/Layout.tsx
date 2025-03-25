@@ -5,8 +5,8 @@ import { Footer } from './Footer';
 import { ScrollToTop } from './ScrollToTop';
 
 interface LayoutProps {
-  children: ReactNode;
-  hideFooter?: boolean;
+  readonly children: ReactNode;
+  readonly hideFooter?: boolean;
 }
 
 export function Layout({ children, hideFooter = false }: LayoutProps) {

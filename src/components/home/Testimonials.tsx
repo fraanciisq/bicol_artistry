@@ -132,19 +132,19 @@ export function Testimonials() {
               <ChevronLeft size={18} />
             </Button>
             
-            {testimonials.map((_, index) => (
+            {testimonials.map((testimonial) => (
               <Button 
-                key={index} 
+                key={testimonial.id} 
                 variant="ghost" 
                 size="sm" 
-                onClick={() => setCurrentIndex(index)}
+                onClick={() => setCurrentIndex(testimonial.id - 1)}
                 className={`w-2 h-2 p-0 rounded-full ${
-                  index === currentIndex
+                  testimonial.id - 1 === currentIndex
                     ? 'bg-terracotta-500'
                     : 'bg-bicolartistry-300 dark:bg-bicolartistry-700'
                 }`}
               >
-                <span className="sr-only">Go to slide {index + 1}</span>
+                <span className="sr-only">Go to slide {testimonial.id}</span>
               </Button>
             ))}
             
