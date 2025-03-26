@@ -159,7 +159,7 @@ export function Footer() {
         </div>
 
         {/* Newsletter */}
-        <div className="border-t border-bicolartistry-200 dark:border-bicolartistry-800 mt-12 pt-12">
+        {/* <div className="border-t border-bicolartistry-200 dark:border-bicolartistry-800 mt-12 pt-12">
           <div className="max-w-xl mx-auto text-center">
             <h3 className="text-xl font-display font-semibold mb-2">Subscribe to our newsletter</h3>
             <p className="text-bicolartistry-600 dark:text-bicolartistry-300 mb-6">
@@ -176,7 +176,7 @@ export function Footer() {
               </Button>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Copyright */}
         <div className="border-t border-bicolartistry-200 dark:border-bicolartistry-800 mt-12 pt-6 text-center text-bicolartistry-600 dark:text-bicolartistry-400 text-sm">

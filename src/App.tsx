@@ -9,9 +9,10 @@ import ProductsPage from "./pages/ProductsPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import CartPage from "./pages/CartPage";
 import NotFound from "./pages/NotFound";
-import ArtisansPage from '@/pages/ArtisansPage'; // Import the ArtisansPage
-import AboutPage from './pages/AboutPage'; // Import the AboutPage
-import ContactPage from './pages/ContactPage'; // Import the ContactPage
+import ArtisansPage from '@/pages/ArtisansPage'; 
+import AboutPage from './pages/AboutPage'; 
+import ContactPage from './pages/ContactPage';
+import AccountPage from "@/pages/AccountPage"; // Import the AccountPage component
 
 // Create a client
 const queryClient = new QueryClient();
@@ -30,9 +31,10 @@ function App() {
               <Route path="/products/:categorySlug" element={<ProductsPage />} />
               <Route path="/product/:id" element={<ProductDetailPage />} />
               <Route path="/cart" element={<CartPage />} />
-              <Route path="/artisans" element={<ArtisansPage />} /> {/* Add the Artisans route */}
-              <Route path="/about" element={<AboutPage />} /> {/* Add the About route */}
-              <Route path="/contact" element={<ContactPage />} /> {/* Add the Contact route */}
+              <Route path="/artisans" element={<ArtisansPage />} /> 
+              <Route path="/about" element={<AboutPage />} /> 
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="/account" element={<AccountPage />} /> {/* Add this route */}
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
