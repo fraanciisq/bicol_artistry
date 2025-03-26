@@ -126,7 +126,7 @@ export function Footer() {
               </li>
               <li>
                 <Link to="/terms" className="text-bicolartistry-600 dark:text-bicolartistry-300 hover:text-terracotta-500 dark:hover:text-terracotta-400 transition-colors">
-                  Terms of Service
+                  Terms & Conditions
                 </Link>
               </li>
             </ul>

@@ -15,6 +15,7 @@ import ContactPage from './pages/ContactPage';
 import AccountPage from "@/pages/AccountPage"; // Import the AccountPage component
 import ScrollToTop from "@/components/ScrollToTop"; // Import the ScrollToTop component
 import LoadingScreen from "@/components/ui/LoadingScreen"; // Import LoadingScreen
+import TermsPage from "./pages/TermsPage"; // Import the TermsPage component
 import { useState, useEffect } from "react";
 
 // Create a client
@@ -79,6 +80,7 @@ function App() {
                   <Route path="/about" element={<AboutPage />} /> 
                   <Route path="/contact" element={<ContactPage />} />
                   <Route path="/account" element={<AccountPage />} /> {/* Add this route */}
+                  <Route path="/terms" element={<TermsPage />} /> {/* Add this route */}
                   {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                   <Route path="*" element={<NotFound />} />
                 </Routes>
