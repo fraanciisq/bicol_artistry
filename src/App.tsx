@@ -11,6 +11,7 @@ import CartPage from "./pages/CartPage";
 import NotFound from "./pages/NotFound";
 import ArtisansPage from '@/pages/ArtisansPage'; // Import the ArtisansPage
 import AboutPage from './pages/AboutPage'; // Import the AboutPage
+import ContactPage from './pages/ContactPage'; // Import the ContactPage
 
 // Create a client
 const queryClient = new QueryClient();
@@ -31,6 +32,7 @@ function App() {
               <Route path="/cart" element={<CartPage />} />
               <Route path="/artisans" element={<ArtisansPage />} /> {/* Add the Artisans route */}
               <Route path="/about" element={<AboutPage />} /> {/* Add the About route */}
+              <Route path="/contact" element={<ContactPage />} /> {/* Add the Contact route */}
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
