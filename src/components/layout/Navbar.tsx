@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, ShoppingCart, User, Search, ChevronDown } from "lucide-react";
 import { categories, products } from "@/data";
 import { CommandDialog, CommandInput, CommandList, CommandItem, CommandEmpty } from "@/components/ui/command";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -141,26 +142,53 @@ export function Navbar() {
 
         {/* Desktop Actions */}
         <div className="hidden md:flex items-center space-x-4">
-          <Button variant="ghost" size="icon" onClick={() => setIsSearchOpen(true)}>
-            <Search size={20} />
-          </Button>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button variant="ghost" size="icon" onClick={() => setIsSearchOpen(true)}>
+                  <Search size={20} />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <span>Search</span>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
 
-          <Button variant="ghost" size="icon" asChild>
-            <Link to="/account">
-              <User size={20} />
-            </Link>
-          </Button>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button variant="ghost" size="icon" asChild>
+                  <Link to="/account">
+                    <User size={20} />
+                  </Link>
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <span>Account</span>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
 
-          <Button variant="ghost" size="icon" className="relative" asChild>
-            <Link to="/cart">
-              <ShoppingCart size={20} />
-              {itemCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-terracotta-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
-                  {itemCount > 9 ? "9+" : itemCount}
-                </span>
-              )}
-            </Link>
-          </Button>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button variant="ghost" size="icon" className="relative" asChild>
+                  <Link to="/cart">
+                    <ShoppingCart size={20} />
+                    {itemCount > 0 && (
+                      <span className="absolute -top-1 -right-1 bg-terracotta-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                        {itemCount > 9 ? "9+" : itemCount}
+                      </span>
+                    )}
+                  </Link>
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <span>Cart</span>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         </div>
 
         {/* Mobile Menu Button */}
