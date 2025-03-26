@@ -61,7 +61,11 @@ export function Navbar() {
     >
       <div className="container px-4 mx-auto flex items-center justify-between">
         {/* Logo */}
-        <Link to="/" className="flex items-center space-x-2">
+        <Link
+          to="/"
+          className="flex items-center space-x-2"
+          onClick={() => window.scrollTo(0, 0)} // Scroll to the top when clicked
+        >
           <span className="text-2xl font-display font-bold bg-clip-text text-transparent bg-gradient-to-r from-terracotta-600 to-terracotta-500">
             Bicol Artistry
           </span>
@@ -72,6 +76,7 @@ export function Navbar() {
           <Link
             to="/"
             className="font-medium hover:text-terracotta-500 transition-colors"
+            onClick={() => window.scrollTo(0, 0)} // Scroll to the top when clicked
           >
             Home
           </Link>
@@ -98,7 +103,10 @@ export function Navbar() {
                     <Link
                       to="/products"
                       className="block px-4 py-2 hover:bg-terracotta-100 dark:hover:bg-terracotta-900/20 transition-colors"
-                      onClick={() => setIsDropdownOpen(false)}
+                      onClick={() => {
+                        setIsDropdownOpen(false);
+                        window.scrollTo(0, 0); // Scroll to the top when clicked
+                      }}
                     >
                       All Products
                     </Link>
@@ -107,7 +115,10 @@ export function Navbar() {
                         key={category.id}
                         to={`/products/${category.slug}`}
                         className="block px-4 py-2 hover:bg-terracotta-100 dark:hover:bg-terracotta-900/20 transition-colors"
-                        onClick={() => setIsDropdownOpen(false)}
+                        onClick={() => {
+                          setIsDropdownOpen(false);
+                          window.scrollTo(0, 0); // Scroll to the top when clicked
+                        }}
                       >
                         {category.name}
                       </Link>
@@ -121,6 +132,7 @@ export function Navbar() {
           <Link
             to="/artisans"
             className="font-medium hover:text-terracotta-500 transition-colors"
+            onClick={() => window.scrollTo(0, 0)} // Scroll to the top when clicked
           >
             Artisans
           </Link>
@@ -128,6 +140,7 @@ export function Navbar() {
           <Link
             to="/about"
             className="font-medium hover:text-terracotta-500 transition-colors"
+            onClick={() => window.scrollTo(0, 0)} // Scroll to the top when clicked
           >
             About
           </Link>
@@ -135,6 +148,7 @@ export function Navbar() {
           <Link
             to="/contact"
             className="font-medium hover:text-terracotta-500 transition-colors"
+            onClick={() => window.scrollTo(0, 0)} // Scroll to the top when clicked
           >
             Contact
           </Link>
@@ -221,25 +235,64 @@ export function Navbar() {
             className="md:hidden glass-card overflow-hidden"
           >
             <nav className="flex flex-col space-y-4 px-4 py-6">
-              <Link to="/" className="text-lg font-medium">
+              <Link
+                to="/"
+                className="text-lg font-medium"
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  window.scrollTo(0, 0); // Scroll to the top when clicked
+                }}
+              >
                 Home
               </Link>
-              <Link to="/products" className="text-lg font-medium">
+              <Link
+                to="/products"
+                className="text-lg font-medium"
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  window.scrollTo(0, 0); // Scroll to the top when clicked
+                }}
+              >
                 Shop
               </Link>
-              <Link to="/artisans" className="text-lg font-medium">
+              <Link
+                to="/artisans"
+                className="text-lg font-medium"
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  window.scrollTo(0, 0); // Scroll to the top when clicked
+                }}
+              >
                 Artisans
               </Link>
-              <Link to="/about" className="text-lg font-medium">
+              <Link
+                to="/about"
+                className="text-lg font-medium"
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  window.scrollTo(0, 0); // Scroll to the top when clicked
+                }}
+              >
                 About
               </Link>
-              <Link to="/contact" className="text-lg font-medium">
+              <Link
+                to="/contact"
+                className="text-lg font-medium"
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  window.scrollTo(0, 0); // Scroll to the top when clicked
+                }}
+              >
                 Contact
               </Link>
-              <Link to="/search" className="text-lg font-medium">
-                Search
-              </Link>
-              <Link to="/account" className="text-lg font-medium">
+              <Link
+                to="/account"
+                className="text-lg font-medium"
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  window.scrollTo(0, 0); // Scroll to the top when clicked
+                }}
+              >
                 Account
               </Link>
             </nav>
