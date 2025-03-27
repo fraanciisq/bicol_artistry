@@ -28,7 +28,7 @@ const AccountPage = () => {
 
   return (
     <Layout>
-      <div className="container py-10">
+      <div className="container py-16">
         <div className="flex flex-col gap-8">
           <div className="flex items-center justify-between">
             <div>
