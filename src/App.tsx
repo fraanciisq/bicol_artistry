@@ -18,6 +18,8 @@ import TermsPage from "./pages/TermsPage";
 import ReturnsPage from "./pages/ReturnsPage"; 
 import ShippingPage from "./pages/ShippingPage";
 import BlogPage from "./pages/BlogPage";
+import BlogCreatePage from "./pages/BlogCreatePage";
+import BlogPostPage from "./pages/BlogPostPage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import ScrollToTop from "@/components/ScrollToTop"; 
 import LoadingScreen from "@/components/ui/LoadingScreen"; 
@@ -85,6 +87,8 @@ function App() {
                   <Route path="/about" element={<AboutPage />} /> 
                   <Route path="/contact" element={<ContactPage />} />
                   <Route path="/blog" element={<BlogPage />} />
+                  <Route path="/blog/create" element={<BlogCreatePage />} />
+                  <Route path="/blog/:slug" element={<BlogPostPage />} />
                   <Route path="/account" element={<AccountPage />} /> 
                   <Route path="/terms" element={<TermsPage />} /> 
                   <Route path="/faq" element={<FAQPage />} />

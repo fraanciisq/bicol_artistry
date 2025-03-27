@@ -1,9 +1,8 @@
-
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Product } from '@/types';
-import { Heart, ShoppingCart } from 'lucide-react';
+import { Heart, ShoppingCart, ImageOff } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/contexts/CartContext';
 
@@ -15,7 +14,7 @@ interface ProductCardProps {
 export function ProductCard({ product, index = 0 }: ProductCardProps) {
   const { addItem, isInCart } = useCart();
   const [imageError, setImageError] = useState(false);
-  
+
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -27,29 +26,17 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
   };
 
   const cardVariants = {
-    hidden: { 
-      opacity: 0,
-      y: 20
-    },
-    visible: { 
-      opacity: 1,
-      y: 0,
-      transition: { 
-        duration: 0.5,
-        delay: index * 0.1
-      }
-    }
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: index * 0.1 } },
   };
 
   const imageVariants = {
-    hover: { 
-      scale: 1.05,
-      transition: { duration: 0.3 }
-    }
+    hover: { scale: 1.05, transition: { duration: 0.3 } },
   };
 
   const alreadyInCart = isInCart(product.id);
-  const imageSrc = imageError ? '/placeholder.svg' : (product.images[0] || '/placeholder.svg');
+  const hasImage = product.images && product.images.length > 0 && !imageError;
+  const imageSrc = hasImage ? product.images[0] : null;
 
   return (
     <motion.div
@@ -60,30 +47,37 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
     >
       <Link to={`/product/${product.id}`} className="block">
         <div className="aspect-square overflow-hidden relative">
-          <motion.img
-            whileHover="hover"
-            variants={imageVariants}
-            src={imageSrc}
-            alt={product.name}
-            className="w-full h-full object-cover transition-transform duration-500"
-            onError={handleImageError}
-          />
-          
+          {hasImage ? (
+            <motion.img
+              whileHover="hover"
+              variants={imageVariants}
+              src={imageSrc}
+              alt={product.name}
+              className="w-full h-full object-cover transition-transform duration-500"
+              onError={handleImageError}
+            />
+          ) : (
+            <div className="w-full h-full flex flex-col items-center justify-center bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400">
+              <ImageOff size={48} />
+              <p className="mt-2 text-sm">No Image Available</p>
+            </div>
+          )}
+
           {product.featured && (
             <div className="absolute top-3 left-3 bg-terracotta-500 text-white text-xs font-bold px-2 py-1 rounded-md">
               Featured
             </div>
           )}
-          
-          <Button 
-            size="icon" 
-            variant="ghost" 
+
+          <Button
+            size="icon"
+            variant="ghost"
             className="absolute top-3 right-3 bg-white/70 hover:bg-white dark:bg-black/70 dark:hover:bg-black text-bicolartistry-700 dark:text-bicolartistry-300 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
           >
             <Heart size={18} />
           </Button>
         </div>
-        
+
         <div className="p-4">
           <div className="flex justify-between items-start gap-2 mb-2">
             <h3 className="font-medium text-bicolartistry-800 dark:text-bicolartistry-100 line-clamp-1">
@@ -93,11 +87,11 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
               ₱{product.price.toLocaleString()}
             </div>
           </div>
-          
+
           <p className="text-sm text-bicolartistry-600 dark:text-bicolartistry-400 line-clamp-2 mb-4 min-h-[2.5rem]">
             {product.description}
           </p>
-          
+
           <div className="flex items-center justify-between">
             <div className="flex items-center">
               <div className="flex">
@@ -120,14 +114,14 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
                 {product.rating}
               </span>
             </div>
-            
-            <Button 
-              size="sm" 
+
+            <Button
+              size="sm"
               onClick={handleAddToCart}
-              variant={alreadyInCart ? "outline" : "default"}
+              variant={alreadyInCart ? 'outline' : 'default'}
               className={`rounded-full transition-all duration-300 ${
-                alreadyInCart 
-                  ? 'border-terracotta-500 text-terracotta-500 hover:bg-terracotta-50' 
+                alreadyInCart
+                  ? 'border-terracotta-500 text-terracotta-500 hover:bg-terracotta-50'
                   : 'bg-terracotta-500 hover:bg-terracotta-600 text-white'
               }`}
             >
