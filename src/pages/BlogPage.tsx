@@ -21,7 +21,7 @@ const BlogPage = () => {
       id: 2,
       title: "Sustainable Crafting: How We Support the Environment",
       excerpt: "Learn about our commitment to sustainability and how our artisans embrace eco-friendly practices.",
-      image: null, // No image provided
+      image: null,
       date: "September 25, 2023",
       author: "Sophia Mendoza",
       category: "Sustainability",
