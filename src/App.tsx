@@ -12,10 +12,15 @@ import NotFound from "./pages/NotFound";
 import ArtisansPage from '@/pages/ArtisansPage'; 
 import AboutPage from './pages/AboutPage'; 
 import ContactPage from './pages/ContactPage';
-import AccountPage from "@/pages/AccountPage"; // Import the AccountPage component
-import ScrollToTop from "@/components/ScrollToTop"; // Import the ScrollToTop component
-import LoadingScreen from "@/components/ui/LoadingScreen"; // Import LoadingScreen
-import TermsPage from "./pages/TermsPage"; // Import the TermsPage component
+import AccountPage from "@/pages/AccountPage"; 
+import FAQPage from "./pages/FAQPage";
+import TermsPage from "./pages/TermsPage";
+import ReturnsPage from "./pages/ReturnsPage"; 
+import ShippingPage from "./pages/ShippingPage";
+import BlogPage from "./pages/BlogPage";
+import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
+import ScrollToTop from "@/components/ScrollToTop"; 
+import LoadingScreen from "@/components/ui/LoadingScreen"; 
 import { useState, useEffect } from "react";
 
 // Create a client
@@ -79,8 +84,13 @@ function App() {
                   <Route path="/artisans" element={<ArtisansPage />} /> 
                   <Route path="/about" element={<AboutPage />} /> 
                   <Route path="/contact" element={<ContactPage />} />
-                  <Route path="/account" element={<AccountPage />} /> {/* Add this route */}
-                  <Route path="/terms" element={<TermsPage />} /> {/* Add this route */}
+                  <Route path="/blog" element={<BlogPage />} />
+                  <Route path="/account" element={<AccountPage />} /> 
+                  <Route path="/terms" element={<TermsPage />} /> 
+                  <Route path="/faq" element={<FAQPage />} />
+                  <Route path="/returns" element={<ReturnsPage />} />
+                  <Route path="/shipping" element={<ShippingPage />} />
+                  <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
                   {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                   <Route path="*" element={<NotFound />} />
                 </Routes>
